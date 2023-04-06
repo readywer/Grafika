@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 
+
 void init_game(Game* game, int width, int height)
 {
     game->is_running = false;
@@ -41,16 +42,29 @@ void handle_game_events(Game* game)
 
     while (SDL_PollEvent(&event)) {
         switch (event.type) {
+        case SDL_MOUSEBUTTONDOWN:
+                SDL_GetMouseState(&mouse_x, &mouse_y);
+                game->pong.ball.x = mouse_x;
+                game -> pong.ball.y =mouse_y;
+                break;
         case SDL_KEYDOWN:
             switch (event.key.keysym.scancode) {
             case SDL_SCANCODE_ESCAPE:
                 game->is_running = false;
                 break;
             case SDL_SCANCODE_W:
-                set_left_pad_speed(&(game->pong), -100);
+                set_left_pad_speed(&(game->pong), -400);
                 break;
             case SDL_SCANCODE_S:
-                set_left_pad_speed(&(game->pong), +100);
+                set_left_pad_speed(&(game->pong), +400);
+                break;
+            case SDL_SCANCODE_P:
+                game->pong.ball.radius *=1.2;
+                if(game->pong.ball.radius>100) game->pong.ball.radius=200;
+                break;
+            case SDL_SCANCODE_O:
+                game->pong.ball.radius *= 0.8;
+                if(game->pong.ball.radius<20) game->pong.ball.radius=10;
                 break;
             default:
                 break;

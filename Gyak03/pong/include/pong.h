@@ -3,6 +3,7 @@
 
 #include "ball.h"
 #include "pad.h"
+#include "counter.h"
 
 #include <stdbool.h>
 
@@ -16,6 +17,7 @@ typedef struct Pong
     Ball ball;
     Pad left_pad;
     Pad right_pad;
+    Counter counter;
 } Pong;
 
 /**

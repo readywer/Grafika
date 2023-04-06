@@ -57,7 +57,7 @@ void render_pad(Pad* pad)
         glColor3f(0.9, 0.3, 0.0);
         glVertex2f(x1, y2);
     } else if (pad->color_theme == GREEN_THEME) {
-        glColor3f(0.0, 0.1, 0.0);
+        glColor3f(0.0, 1.0, 0.0);
         glVertex2f(x1, y1);
         glColor3f(0.0, 0.8, 0.2);
         glVertex2f(x2, y1);
