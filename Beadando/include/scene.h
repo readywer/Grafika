@@ -54,4 +54,5 @@ void updateTruck(float* x, float* z, float* angle, float* speed, float* accelera
 void draw_skybox(Scene *scene);
 void draw_ground(Scene *scene);
 void show_manual(Scene *scene);
+void shadow(float x, float y, float radius);
 #endif /* SCENE_H */

@@ -3,6 +3,7 @@
 #include <obj/load.h>
 #include <obj/draw.h>
 
+#include <math.h>
 
 #include <SDL2/SDL_image.h>
 
@@ -141,6 +142,7 @@ void render_scene(const Scene* scene)
     draw_model(&(scene->truck));
     
     show_manual(scene);
+    shadow(0,0,2);
 }
 
 void draw_origin()
@@ -398,4 +400,24 @@ void show_manual(Scene *scene)
     glEnable(GL_DEPTH_TEST); 
     }
     
+}
+void shadow(float x, float y, float radius) {
+   int i;
+	int triangleAmount = 200; //# of triangles used to draw circle
+	
+	//GLfloat radius = 0.8f; //radius
+	GLfloat twicePi = 2.0f * M_PI;
+    glPushMatrix();
+    glRotatef(90.0f, 1.0f, 0.0f, 0.0f); 
+    glTranslatef(0.0f, 0.0f, 0.69f);
+	glBegin(GL_TRIANGLE_FAN);
+		glVertex2f(x, y); // center of circle
+		for(i = 0; i <= triangleAmount;i++) { 
+			glVertex2f(
+		            x + (radius * cos(i *  twicePi / triangleAmount)), 
+			    y + (radius * sin(i * twicePi / triangleAmount))
+			);
+		}
+	glEnd();
+    glPopMatrix();
 }
